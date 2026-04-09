@@ -6,8 +6,16 @@ app = Flask(__name__)
 
 # ============================================================
 #  ROUTE 1 — Home page
+
+@app.route('/analyze/<word>')
+def analyze(word):
+    count = len(word)
+    return str(count)
+
+
 #  Visit: http://YOUR_IP:8080/
 # ============================================================
+
 @app.route('/')
 def home():
     # render_template loads templates/home.html and sends it to the browser
