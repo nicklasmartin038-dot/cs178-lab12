@@ -9,19 +9,21 @@ app = Flask(__name__)
 
 @app.route('/analyze/<word>')
 def analyze(word):
-    num_count = len(word)
-    
-    vowels = "aeiouAEIOU"
-    num_vowels = sum(1 for letter in word if letter in vowels)
+    num_chars = len(word)
 
-    return render_template(
-        'analyze.html',
-        word=word,
-        num_count=num_count,
-        num_vowels=num_vowels
-    )
+    num_vowels = 0
+    for char in word.lower():
+        if char in 'aeiou':
+            num_vowels += 1
 
-# Had Chatgpt help me with a couple of bugs in my code
+    reversed_word = [::-1]
+
+    return render_template('analyze.html',
+                           word=word,
+                           num_chars=num_chars,
+                           num_vowels=num_vowels,
+                           reversed_word=reversed_word)
+
 
 #  Visit: http://YOUR_IP:8080/
 # ============================================================
