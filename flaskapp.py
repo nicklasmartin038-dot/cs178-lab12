@@ -9,9 +9,19 @@ app = Flask(__name__)
 
 @app.route('/analyze/<word>')
 def analyze(word):
-    count = len(word)
-    return str(count)
+    num_count = len(word)
+    
+    vowels = "aeiouAEIOU"
+    num_vowels = sum(1 for letter in word if letter in vowels)
 
+    return render_template(
+        'analyze.html',
+        word=word,
+        num_count=num_count,
+        num_vowels=num_vowels
+    )
+
+# Had Chatgpt help me with a couple of bugs in my code
 
 #  Visit: http://YOUR_IP:8080/
 # ============================================================
